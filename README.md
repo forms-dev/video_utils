@@ -12,12 +12,12 @@ Directory Hierarchy:
     - video1.pkl [will be extracted automatically]
     - [frames to combine]
     - out.mp4 [result after running code]
--- video2.mp4
--- video2
---- video2.mp3 [will be extracted automatically]
---- video2.pkl [will be extracted automatically]
---- [frames to combine]
---- out.mp4 [result after running code]
+  - video2.mp4
+  - video2
+    - video2.mp3 [will be extracted automatically]
+    - video2.pkl [will be extracted automatically]
+    - [frames to combine]
+    - out.mp4 [result after running code]
 
 
 Steps to follow:
