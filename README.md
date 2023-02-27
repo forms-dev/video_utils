@@ -6,6 +6,8 @@ Contains utilities used for processing videos.
 
 Directory Hierarchy:
 - main directory
+  - convert_vid_to_audio.py
+  - merge_video.bat
   - video1.mp4
   - video1
     - video1.mp3 [will be extracted automatically]
