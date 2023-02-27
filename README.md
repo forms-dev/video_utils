@@ -5,19 +5,19 @@ Contains utilities used for processing videos.
 
 
 Directory Hierarchy:
---main directory
------video1.mp4
------video1
--------video1.mp3 [will be extracted automatically]
--------video1.pkl [will be extracted automatically]
--------[frames to combine]
--------out.mp4 [result after running code]
------video2.mp4
------video2
--------video2.mp3 [will be extracted automatically]
--------video2.pkl [will be extracted automatically]
--------[frames to combine]
--------out.mp4 [result after running code]
+- main directory
+-- video1.mp4
+-- video1
+--- video1.mp3 [will be extracted automatically]
+--- video1.pkl [will be extracted automatically]
+--- [frames to combine]
+--- out.mp4 [result after running code]
+-- video2.mp4
+-- video2
+--- video2.mp3 [will be extracted automatically]
+--- video2.pkl [will be extracted automatically]
+--- [frames to combine]
+--- out.mp4 [result after running code]
 
 
 Steps to follow:
