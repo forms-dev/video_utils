@@ -22,8 +22,12 @@ def convert_img_video(filename):
     fps = prop['fps']
     path = filename + "/%05d.jpg"
     audio = os.path.join(filename,filename + ".mp3")
-    # cmd = f'ffmpeg -y -framerate {fps} -pattern_type glob -i {path} -i {audio}  out.mp4'
-    cmd = f'ffmpeg -y -i {path} -i {audio} -framerate {fps} -async 10000 -c:v libx264 -pix_fmt yuv420p test_out1.mp4'
+    output = os.path.join(filename,'out.mp4')
+    #cmd = f'ffmpeg -y -framerate {fps} -pattern_type glob -i {path} -i {audio}  test1_out.mp4' #video faster
+
+    cmd = f'ffmpeg -framerate {fps} -i {path} -i {audio} -r {fps} -c:v libx264 -vcodec h264 {output} -async 1 -vsync 1'
+
+    #cmd = f'ffmpeg -y -i {path} -i {audio} -framerate {fps} -async 1 -c:v libx264 -vcodec h264 test_out1.mp4' #audio faster
 
     os.system(cmd)
 
@@ -38,31 +42,31 @@ def get_fps(video_file, filename):
     out = os.path.join(filename, filename + ".pickle")
     with open(out, 'wb') as handle:
         pickle.dump(prop, handle, protocol=pickle.HIGHEST_PROTOCOL)
-
+    print('FPS Extracted successfully.')
     # Find the number of frames
-    video_length = int(cap.get(cv2.CAP_PROP_FRAME_COUNT)) - 1
-    print("Number of frames: ", video_length)
-    count = 0
-    print("Converting video..\n")
-    # Start converting the video
-    while cap.isOpened():
-        # Extract the frame
-        ret, frame = cap.read()
-        if not ret:
-            continue
-        # Write the results back to output location.
-        cv2.imwrite(filename + "/%#05d.jpg" % (count + 1), frame)
-        count = count + 1
-        # If there are no more frames left
-        if (count > (video_length - 1)):
-            # Log the time again
-            time_end = time.time()
-            # Release the feed
-            cap.release()
-            # Print stats
-            print("Done extracting frames.\n%d frames extracted" % count)
-            print("It took %d seconds forconversion." % (time_end - time_start))
-            break
+    # video_length = int(cap.get(cv2.CAP_PROP_FRAME_COUNT)) - 1
+    # print("Number of frames: ", video_length)
+    # count = 0
+    # print("Converting video..\n")
+    # # Start converting the video
+    # while cap.isOpened():
+    #     # Extract the frame
+    #     ret, frame = cap.read()
+    #     if not ret:
+    #         continue
+    #     # Write the results back to output location.
+    #     cv2.imwrite(filename + "/%#05d.jpg" % (count + 1), frame)
+    #     count = count + 1
+    #     # If there are no more frames left
+    #     if (count > (video_length - 1)):
+    #         # Log the time again
+    #         time_end = time.time()
+    #         # Release the feed
+    #         cap.release()
+    #         # Print stats
+    #         print("Done extracting frames.\n%d frames extracted" % count)
+    #         print("It took %d seconds forconversion." % (time_end - time_start))
+    #         break
 
 if __name__ == "__main__":
     vf = sys.argv[1]
